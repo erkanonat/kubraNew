@@ -1,11 +1,11 @@
 package com.audiotorium2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -15,10 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.audiotorium2.controller.AppController;
+import com.audiotorium2.entity.Criteria;
 import com.audiotorium2.entity.Item;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @ManagedBean
 @Component
@@ -30,13 +28,18 @@ public class AppBean {
 	AppController appController;
 
 	
+
+	public List<Criteria> myCrts;
 	public List<Item> myItems;
 	
+	public String newIssueName;
 	public String[] colors;
 
 	public String[] brands;
 
 
+	
+	
 	public List<Item> getMyItems() {
 		return myItems;
 	}
@@ -72,6 +75,11 @@ public class AppBean {
 		brands[8] = "Jaguar";
 		brands[9] = "Ford";
 		
+		
+		myCrts = new ArrayList<Criteria>();
+		myCrts.add(new Criteria("", 0));
+		
+		
 	}
 	public String[] getColors() {
 		
@@ -87,11 +95,18 @@ public class AppBean {
 		myItems.remove(myItems.size()-1);
 	}
 	
-	public String createIssueStepTwo() {
-		//return "createIssueSecondStep.xhtml";
-		return "error.xhtml";
+	public String forwardStepTwo() {
+		
+		return "cd-step2.xhtml";
 	}
 
+	public void onAddNewCriteria() {
+		
+		myCrts .add(new Criteria("", 0));
+		 FacesMessage msg = new FacesMessage("New Criteria added", "");
+		 FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
 	public void onAddNew() {
 		
 		Item item = new Item("sf12", "brandd", 1999, "yellow", 10002, false);
@@ -100,6 +115,11 @@ public class AppBean {
 		 FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
+	public String deleteCriteria(Criteria crt) {
+		myCrts.remove(crt);
+		return null;
+	}
+	
 	public String deleteRow(Item item) {
 		myItems.remove(item);
 		return null;
@@ -125,4 +145,22 @@ public class AppBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+
+	public List<Criteria> getMyCrts() {
+		return myCrts;
+	}
+
+	public void setMyCrts(List<Criteria> myCrts) {
+		this.myCrts = myCrts;
+	}
+
+	public String getNewIssueName() {
+		return newIssueName;
+	}
+
+	public void setNewIssueName(String newIssueName) {
+		this.newIssueName = newIssueName;
+	}
+	
+	
 }

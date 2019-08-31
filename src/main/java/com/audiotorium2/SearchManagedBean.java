@@ -58,7 +58,8 @@ public class SearchManagedBean {
 	public String createIssue() throws Exception {
 		
 		
-		return "createDecision.xhtml";
+		//return "createDecision.xhtml";
+		return "cd-step1.xhtml";
 	}
 	
 	public String listMyIssues() throws Exception {

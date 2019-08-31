@@ -51,7 +51,7 @@ body .ui-steps.custom .ui-steps-item.ui-state-highlight .ui-menuitem-link .ui-st
 	
 		<h:form>
 
-			<h3 style="margin-top:0">Enter Decision Parameters</h3>
+			<h3 style="margin-top:0">Enter Criterias</h3>
 			<p:steps  >
 				<p:menuitem value="Step-1" style="width:100%" />
 				<p:menuitem value="Step-2" style="width:100%" />
@@ -59,77 +59,72 @@ body .ui-steps.custom .ui-steps-item.ui-state-highlight .ui-menuitem-link .ui-st
 				<p:menuitem value="Step-4" style="width:100%" />
 			</p:steps>
 
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+ <div class="Wid100" style="margin-bottom:20px">
+ 
+ 
+ 
+ <p:inputText placeholder="Enter Issue Name" style="width:98%" value="#{appBean.newIssueName}" required="true"/>
+ </div>
+                   
 
 
-			<p:dataTable id="myItems" widgetVar="myItems" var="car"
-				value="#{appBean.myItems}" editable="true"
+			<p:dataTable id="myCrts" widgetVar="myCrts" var="crt"
+				value="#{appBean.myCrts}" editable="true"
 				style="margin-bottom:20px">
 
 				<f:facet name="header">
-            Add and Edit Parameters 
+            Criterias 
         </f:facet>
 
 
 
-				<p:column headerText="Year">
+				<p:column headerText="Criteria Name">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{car.year}" />
+							<h:outputText value="#{crt.name}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{car.year}" style="width:100%" label="Year" />
+							<p:inputText value="#{crt.name}" style="width:100%" label="Name" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
-				<p:column headerText="Brand">
+				
+				<p:column headerText="Value">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{car.brand}" />
+							<h:outputText value="#{crt.value}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:selectOneMenu value="#{car.brand}" style="width:100%">
-								<f:selectItems value="#{appBean.brands}" var="man"
-									itemLabel="#{man}" itemValue="#{man}" />
-							</h:selectOneMenu>
+							<p:inputNumber value="#{crt.value}" style="width:100%" label="Value" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
-				<p:column headerText="Color">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{car.color}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{car.color}" style="width:100%">
-								<f:selectItems value="#{appBean.colors}" var="color"
-									itemLabel="#{color}" itemValue="#{color}" />
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+				
 
 				<p:column style="width:32px">
 					<p:rowEditor />
 				</p:column>
 				
 				<p:column style="width:32px">
-					<p:commandButton icon="fa fa-trash"   process="@this" update="myItems" action="#{appBean.deleteRow(car)}"  />
+					<p:commandButton icon="fa fa-trash"   process="@this" update="myCrts" action="#{appBean.deleteCriteria(crt)}"  />
 				</p:column>
 
 				<f:facet name="footer">
-					<p:commandButton value="Add Parameter"
+					<p:commandButton value="Add Criteria"
 						styleClass="ui-priority-primary" process="@this"
-						action="#{appBean.onAddNew()}"
-						oncomplete="PF('myItems').addRow();" />
+						action="#{appBean.onAddNewCriteria()}"
+						oncomplete="PF('myCrts').addRow();" />
 					
 				</f:facet>
 			</p:dataTable>
 
 
 <div>
-<p:commandButton value="next" action="#{appBean.createIssueStepTwo}"> </p:commandButton>
+<p:commandButton value="Next" action="#{appBean.forwardStepTwo}"> </p:commandButton>
 </div>
 
 		</h:form>
