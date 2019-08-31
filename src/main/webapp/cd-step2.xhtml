@@ -52,7 +52,7 @@ body .ui-steps.custom .ui-steps-item.ui-state-highlight .ui-menuitem-link .ui-st
 		<h:form>
 
 			<h3 style="margin-top:1">Enter Criteria Ranges</h3>
-			<p:steps  >
+			<p:steps activeIndex="1" >
 				<p:menuitem value="Step-1" style="width:100%" />
 				<p:menuitem value="Step-2" style="width:100%" />
 				<p:menuitem value="Step-3" style="width:100%" />
@@ -73,59 +73,11 @@ body .ui-steps.custom .ui-steps-item.ui-state-highlight .ui-menuitem-link .ui-st
                    
 
 
-			<p:dataTable id="myCrts" widgetVar="myCrts" var="crt"
-				value="#{appBean.myCrts}" editable="true"
-				style="margin-bottom:20px">
-
-				<f:facet name="header">
-            Criterias 
-        </f:facet>
-
-
-
-				<p:column headerText="Criteria Name">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{crt.name}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{crt.name}" style="width:100%" label="Name" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				
-				<p:column headerText="Value">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{crt.value}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputNumber value="#{crt.value}" style="width:100%" label="Value" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				
-
-				<p:column style="width:32px">
-					<p:rowEditor />
-				</p:column>
-				
-				<p:column style="width:32px">
-					<p:commandButton icon="fa fa-trash"   process="@this" update="myCrts" action="#{appBean.deleteCriteria(crt)}"  />
-				</p:column>
-
-				<f:facet name="footer">
-					<p:commandButton value="Add Criteria"
-						styleClass="ui-priority-primary" process="@this"
-						action="#{appBean.onAddNewCriteria()}"
-						oncomplete="PF('myCrts').addRow();" />
-					
-				</f:facet>
-			</p:dataTable>
 
 
 <div>
-<p:commandButton value="Next" action="#{appBean.forwardStepTwo}"> </p:commandButton>
+<p:commandButton value="Back" action="#{appBean.forwardStepOne}"> </p:commandButton>
+<p:commandButton value="Next" action="#{appBean.forwardStepThree}"> </p:commandButton>
 </div>
 
 		</h:form>

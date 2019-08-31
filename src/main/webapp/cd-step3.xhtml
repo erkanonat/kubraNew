@@ -1,0 +1,87 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+	<style type="text/css">
+body .ui-steps .ui-steps-item {
+    width: 24%;
+}
+ 
+body .ui-state-highlight {
+    text-shadow: none !important;
+}
+ 
+body .ui-steps.custom {
+    margin-bottom: 30px;
+}
+ 
+body .ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+    overflow: visible;
+    border: 1px solid #c8c8c8;
+    display: block;
+    background-color: #FFFFFF;
+}
+ 
+body .ui-steps.custom .ui-steps-item .ui-menuitem-link .ui-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    position: relative;
+    top: -3px;
+}
+ 
+body .ui-steps.custom .ui-steps-item .ui-menuitem-link .ui-steps-title {
+    margin-top: -6px;
+}
+ 
+body .ui-steps.custom .ui-steps-item.ui-state-highlight .ui-menuitem-link .ui-steps-title {
+    color: #555;
+}
+</style>
+	
+		<h:form>
+
+			<h3 style="margin-top:1">Enter Range Values</h3>
+			<p:steps activeIndex="2" >
+				<p:menuitem value="Step-1" style="width:100%" />
+				<p:menuitem value="Step-2" style="width:100%" />
+				<p:menuitem value="Step-3" style="width:100%" />
+				<p:menuitem value="Step-4" style="width:100%" />
+			</p:steps>
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+ <div class="Wid100" style="margin-bottom:20px">
+ 
+ 
+ 
+ <p:inputText placeholder="Enter Issue Name" style="width:98%" value="#{appBean.newIssueName}" required="true"/>
+ </div>
+                   
+
+
+
+
+<div>
+<p:commandButton value="Back" action="#{appBean.forwardStepTwo}"> </p:commandButton>
+<p:commandButton value="Next" action="#{appBean.forwardStepFour}"> </p:commandButton>
+</div>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+

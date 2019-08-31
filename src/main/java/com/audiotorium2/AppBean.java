@@ -94,12 +94,22 @@ public class AppBean {
 	public void onDeleteRow() {
 		myItems.remove(myItems.size()-1);
 	}
-	
+	public String forwardStepOne() {
+		return "cd-step1.xhtml";
+	}
 	public String forwardStepTwo() {
-		
 		return "cd-step2.xhtml";
 	}
-
+	public String forwardStepThree() {
+		return "cd-step3.xhtml";
+	}
+	public String forwardStepFour() {
+		return "cd-step4.xhtml";
+	}
+	public String saveIssue() {
+		return "savedIssue.xhtml";
+	}
+	
 	public void onAddNewCriteria() {
 		
 		myCrts .add(new Criteria("", 0));
