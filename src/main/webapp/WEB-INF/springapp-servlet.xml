@@ -40,6 +40,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<bean id="appDAO" class="com.audiotorium2.dao.AppDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
 	<bean id="buttonManagedBean"
 		class="com.audiotorium2.ButtonManagedBean"></bean>
 	<bean id="searchManagedBean"

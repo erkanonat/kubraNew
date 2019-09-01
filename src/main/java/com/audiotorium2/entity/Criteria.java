@@ -1,16 +1,18 @@
 package com.audiotorium2.entity;
 
+import java.util.List;
+
 public class Criteria {
 
-	
 	private String name;
 	private int value;
-	
+	private List<Range> ranges;
 
-	public Criteria(String name, int value) {
+	public Criteria(String name, int value, List<Range> ranges) {
 		super();
 		this.name = name;
 		this.value = value;
+		this.ranges=ranges;
 	}
 	public String getName() {
 		return name;
@@ -24,4 +26,11 @@ public class Criteria {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	public List<Range> getRanges() {
+		return ranges;
+	}
+	public void setRanges(List<Range> ranges) {
+		this.ranges = ranges;
+	}
+	
 }

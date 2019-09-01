@@ -3,13 +3,21 @@ package com.audiotorium2.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.audiotorium2.dao.IAppDAO;
+import com.audiotorium2.entity.Criteria;
 import com.audiotorium2.entity.Item;
+import com.audiotorium2.entity.Product;
+import com.audiotorium2.entity.Range;
 
 @Service
 public class AppServiceImp implements IAppService {
 
+	@Autowired
+	IAppDAO dao;
+	
 	@Override
 	public List<Item> createItems(int size) {
 		// TODO Auto-generated method stub
@@ -42,4 +50,16 @@ public class AppServiceImp implements IAppService {
 		return result;
 	}
 
+	public void saveDecisionAnalysis(List<Product> products, List<Criteria> crts, List<Range> ranges) {
+			
+		for(int i=0;i<products.size();i++) {
+			dao.saveProduct(products.get(i));
+		}
+		for(int j=0;j<crts.size();j++) {
+			dao.saveCriteria(crts.get(j));
+		}
+		for(int k=0;k<ranges.size();k++) {
+			dao.saveRange(ranges.get(k));
+		}
+	}
 }

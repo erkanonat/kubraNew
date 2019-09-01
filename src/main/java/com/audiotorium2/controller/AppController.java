@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.audiotorium2.entity.Criteria;
 import com.audiotorium2.entity.Item;
+import com.audiotorium2.entity.Product;
+import com.audiotorium2.entity.Range;
 import com.audiotorium2.service.IAppService;
 
 @Controller
@@ -19,6 +19,10 @@ public class AppController {
 	@Autowired
 	IAppService appService;
 
+	public void saveDecisionAnalysis(List<Product> products, List<Criteria> crts, List<Range> ranges) {
+		appService.saveDecisionAnalysis(products, crts, ranges);
+	}
+	
 	public List<Item> getMyItems(){
 		
 		

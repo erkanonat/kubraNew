@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect TexAlCenter">
+                    <br/>
+                    <h2>Successfully Saved</h2>
+                    <br/>
+                    <span class="gray">Your products criterias and ranges are successfully saved!</span>
+                    <br/><br/>
+                    <div class="ui-g ui-fluid">
+    <div class="ContainerIndent">
+        <div class="ContainerIndentp">
+            <h:graphicImage name="images/success.png" library="rio-layout" style="width:40%; max-width:200px;"/>
+                       
+        </div>
+    </div>
+    </div>
+<!--                     <input type="text" placeholder="Search"/> -->
+                     <ul id="top-menu" class="ShowOnDesktop">
+            <li>
+              <!--   <a class="ripplelink"><i class="icon-search100"></i> <span class="Txt">Search</span></a>--> 
+                <ul>
+                    <li><input type="text" placeholder="Search"/></li>
+                </ul>
+                </li>
+                </ul>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </ui:define>
+
+</ui:composition>

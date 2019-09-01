@@ -1,7 +1,10 @@
 package com.audiotorium2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -16,30 +19,45 @@ import org.springframework.stereotype.Component;
 
 import com.audiotorium2.controller.AppController;
 import com.audiotorium2.entity.Criteria;
+import com.audiotorium2.entity.DataTableColumn;
 import com.audiotorium2.entity.Item;
+import com.audiotorium2.entity.Product;
+import com.audiotorium2.entity.Range;
 
 @ManagedBean
 @Component
 @SessionScoped
 public class AppBean {
 
-	
 	@Autowired
 	AppController appController;
 
-	
-
 	public List<Criteria> myCrts;
-	public List<Item> myItems;
+	public List<Range> myRanges;
+	public List<Product> myProducts;
+	public List<DataTableColumn> productColumns;
 	
+	public List<Item> myItems;
 	public String newIssueName;
 	public String[] colors;
-
 	public String[] brands;
 
+	public Map<String,List<Range>> criteriaMap;
+	
+	@PostConstruct
+	public void appBean() {
 
-	
-	
+		myItems = appController.getMyItems();
+		myCrts = new ArrayList<Criteria>();
+		myCrts.add(new Criteria("", 0,null));
+		myRanges = new ArrayList<Range>();
+		myRanges.add(new Range("", "", 0));
+		myProducts = new ArrayList<Product>();
+		myProducts.add(new Product("", 0, new HashMap<String, String>(), 0));
+		criteriaMap = new HashMap<String, List<Range>>();
+		
+	}
+
 	public List<Item> getMyItems() {
 		return myItems;
 	}
@@ -48,42 +66,7 @@ public class AppBean {
 		this.myItems = myItems;
 	}
 
-	@PostConstruct
-	public void appBean() {
-
-		myItems = appController.getMyItems();
-		colors = new String[10];
-		colors[0] = "Black";
-		colors[1] = "White";
-		colors[2] = "Green";
-		colors[3] = "Red";
-		colors[4] = "Blue";
-		colors[5] = "Orange";
-		colors[6] = "Silver";
-		colors[7] = "Yellow";
-		colors[8] = "Brown";
-		colors[9] = "Maroon";
-		brands = new String[10];
-		brands[0] = "BMW";
-		brands[1] = "Mercedes";
-		brands[2] = "Volvo";
-		brands[3] = "Audi";
-		brands[4] = "Renault";
-		brands[5] = "Fiat";
-		brands[6] = "Volkswagen";
-		brands[7] = "Honda";
-		brands[8] = "Jaguar";
-		brands[9] = "Ford";
-		
-		
-		myCrts = new ArrayList<Criteria>();
-		myCrts.add(new Criteria("", 0));
-		
-		
-	}
 	public String[] getColors() {
-		
-		
 		return colors;
 	}
 
@@ -92,49 +75,63 @@ public class AppBean {
 	}
 
 	public void onDeleteRow() {
-		myItems.remove(myItems.size()-1);
+		myItems.remove(myItems.size() - 1);
 	}
+
 	public String forwardStepOne() {
 		return "cd-step1.xhtml";
 	}
+
 	public String forwardStepTwo() {
 		return "cd-step2.xhtml";
 	}
+
 	public String forwardStepThree() {
+		this.fillCriteriaRangeMap();
 		return "cd-step3.xhtml";
 	}
+
 	public String forwardStepFour() {
+		this.calculatePrice();
 		return "cd-step4.xhtml";
 	}
+
 	public String saveIssue() {
-		return "savedIssue.xhtml";
+		this.saveDecisionAnalysis();
+		return "successPage.xhtml";
 	}
-	
+
+	public void onAddNewProduct() {
+		myProducts.add(new Product("", 0, new HashMap<String, String>(), 0));
+		FacesMessage msg = new FacesMessage("New Product added", "");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onAddNewRange() {
+		myRanges.add(new Range("", "", 0));
+		FacesMessage msg = new FacesMessage("New Range added", "");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
 	public void onAddNewCriteria() {
-		
-		myCrts .add(new Criteria("", 0));
-		 FacesMessage msg = new FacesMessage("New Criteria added", "");
-		 FacesContext.getCurrentInstance().addMessage(null, msg);
+		myCrts.add(new Criteria("", 0,null));
+		FacesMessage msg = new FacesMessage("New Criteria added", "");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-	
+
 	public void onAddNew() {
-		
-		Item item = new Item("sf12", "brandd", 1999, "yellow", 10002, false);
-		 myItems.add(item);
-		 FacesMessage msg = new FacesMessage("New Car added", item.getId());
-		 FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public String deleteCriteria(Criteria crt) {
 		myCrts.remove(crt);
 		return null;
 	}
-	
+
 	public String deleteRow(Item item) {
 		myItems.remove(item);
 		return null;
 	}
-	
+
 	public void onRowEdit(RowEditEvent event) {
 		FacesMessage msg = new FacesMessage("Item Edited", ((Item) event.getObject()).getId());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -148,7 +145,6 @@ public class AppBean {
 	public void onCellEdit(CellEditEvent event) {
 		Object oldValue = event.getOldValue();
 		Object newValue = event.getNewValue();
-
 		if (newValue != null && !newValue.equals(oldValue)) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed",
 					"Old: " + oldValue + ", New:" + newValue);
@@ -171,6 +167,103 @@ public class AppBean {
 	public void setNewIssueName(String newIssueName) {
 		this.newIssueName = newIssueName;
 	}
+
+	public List<Range> getMyRanges() {
+		return myRanges;
+	}
+
+	public void setMyRanges(List<Range> myRanges) {
+		this.myRanges = myRanges;
+	}
+
+	public List<String> getCriterias() {
+		List<String> crts = new ArrayList<String>();
+		if (!myCrts.isEmpty()) {
+			for (Criteria crt : myCrts) {
+				crts.add(crt.getName());
+			}
+		}
+		return crts;
+	}
 	
+	public void fillCriteriaRangeMap(){
+		this.criteriaMap.clear();
+		for(int i=0;i<myCrts.size();i++) {
+			List<Range> rangeList = new ArrayList<Range>();
+			for(int j=0;j<myRanges.size();j++) {
+				if(myRanges.get(j).getCriteriaName().equals(myCrts.get(i).getName())) {
+					rangeList.add(myRanges.get(j));
+				}
+			}
+			this.criteriaMap.put(myCrts.get(i).getName(), rangeList);
+		}
+	}
+
+	public List<DataTableColumn> getProductColumns() {
+		List<DataTableColumn> result = new ArrayList<DataTableColumn>();
+		if (!myCrts.isEmpty()) {
+			for (Criteria crt : myCrts) {
+				DataTableColumn column = new DataTableColumn(crt.getName(), crt.getName());
+				result.add(column);
+			}
+		}
+		return result;
+	}
+
+	public void setProductColumns(List<DataTableColumn> dataTableColumns) {
+		this.productColumns = dataTableColumns;
+	}
+
+	public List<Product> getMyProducts() {
+		return myProducts;
+	}
+
+	public void setMyProducts(List<Product> myProducts) {
+		this.myProducts = myProducts;
+	}
+
+	public Map<String, List<Range>> getCriteriaMap() {
+		return criteriaMap;
+	}
+
+	public void setCriteriaMap(Map<String, List<Range>> criteriaMap) {
+		this.criteriaMap = criteriaMap;
+	}
 	
+	public void calculatePrice() {
+		if(!myProducts.isEmpty()) {
+			for(int i=0;i<myProducts.size();i++) {
+				double grade = 0;
+				
+				for(Entry<String, String> entry : myProducts.get(i).getCriteriaRangeMap().entrySet()) {
+					Criteria crt = findCriteria(entry.getKey());					
+					Range rng = findRange(entry.getValue());
+					grade += rng.getWeight() * Double.valueOf(crt.getValue());
+				}
+				myProducts.get(i).setGrade(grade);
+			}
+		}
+	}
+	public Range findRange(String rangeName) {
+		for(int i=0;i<myRanges.size();i++) {
+			if(rangeName.equals(myRanges.get(i).getRangeName())) {
+				return myRanges.get(i);
+			}
+		}
+		return null;
+	}
+	public Criteria findCriteria(String crtName) {
+		for(int i=0;i<myCrts.size();i++) {
+			if(crtName.equals(myCrts.get(i).getName())) {
+				return myCrts.get(i);
+			}
+		}
+		return null;
+	}
+	public void saveDecisionAnalysis() {
+		appController.saveDecisionAnalysis(myProducts, myCrts, myRanges);
+		
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Issue saved", "Saved");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 }
