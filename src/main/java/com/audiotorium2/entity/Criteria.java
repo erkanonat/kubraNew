@@ -1,12 +1,13 @@
 package com.audiotorium2.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Criteria {
 
-	private String name;
-	private int value;
-	private List<Range> ranges;
+	private String name="";
+	private int value=0;
+	private List<Range> ranges= new ArrayList<Range>();
 
 	public Criteria(String name, int value, List<Range> ranges) {
 		super();

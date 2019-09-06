@@ -2,9 +2,9 @@ package com.audiotorium2.entity;
 
 public class Range {
 
-	private String criteriaName;
-	private String rangeName;
-	private double weight;
+	private String criteriaName="";
+	private String rangeName="";
+	private double weight=0;
 	
 	
 	

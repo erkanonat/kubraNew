@@ -15,15 +15,17 @@ public class EntityProduct {
     private int id;
 
     private String name;
+    private int issue_id;
     private double grade;
 
     public EntityProduct() {
 
     }
 
-    public EntityProduct(String name, double grade) {
+    public EntityProduct(String name, int issue_id, double grade) {
         super();
         this.name = name;
+        this.issue_id=issue_id;
         this.grade = grade;
     }
 }

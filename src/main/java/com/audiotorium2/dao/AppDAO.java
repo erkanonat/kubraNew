@@ -7,9 +7,7 @@ import com.audiotorium2.entity.Criteria;
 import com.audiotorium2.entity.Product;
 import com.audiotorium2.entity.Range;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class AppDAO implements IAppDAO {
 
@@ -29,13 +27,22 @@ public class AppDAO implements IAppDAO {
 
 		try {
 			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, c.getId());
 			ps.setInt(2, c.getIssue_id());
 			ps.setString(3, c.getName());
 			ps.setDouble(4,c.getWeight());
 
 			ps.executeUpdate();
+			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					c.setId(generatedKeys.getInt(1));
+				}
+				else {
+					throw new SQLException("Creating record failed, no ID obtained.");
+				}
+			}
+
 			ps.close();
 			return c;
 		} catch (SQLException e) {
@@ -60,13 +67,22 @@ public class AppDAO implements IAppDAO {
 
 		try {
 			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, range.getId());
 			ps.setInt(2, range.getCriteria_id());
 			ps.setString(3, range.getRange_name());
 			ps.setDouble(4, range.getRange_value());
 
 			ps.executeUpdate();
+
+			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					range.setId(generatedKeys.getInt(1));
+				}
+				else {
+					throw new SQLException("Creating record failed, no ID obtained.");
+				}
+			}
 
 			ps.close();
 			return range;
@@ -86,17 +102,27 @@ public class AppDAO implements IAppDAO {
 	@Override
 	public EntityProduct saveProduct(EntityProduct product) {
 		String sql = "INSERT INTO sys.product "
-				+ "(id, name, grade  ) VALUES (?,?,?)";
+				+ "(id, name, issue_id, grade  ) VALUES (?,?,?,?)";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, product.getId());
 			ps.setString(2, product.getName());
-			ps.setDouble(3, product.getGrade());
+			ps.setInt(3, product.getIssue_id());
+			ps.setDouble(4, product.getGrade());
 
 			ps.executeUpdate();
+
+			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					product.setId(generatedKeys.getInt(1));
+				}
+				else {
+					throw new SQLException("Creating record failed, no ID obtained.");
+				}
+			}
 
 			ps.close();
 			return  product;
@@ -122,13 +148,23 @@ public class AppDAO implements IAppDAO {
 
 		try {
 			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, details.getId());
 			ps.setInt(2, details.getProduct_id());
 			ps.setInt(3, details.getCriteria_id());
 			ps.setInt(4, details.getRange_id());
 			ps.setDouble(5, details.getWeight());
 			ps.executeUpdate();
+
+
+			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					details.setId(generatedKeys.getInt(1));
+				}
+				else {
+					throw new SQLException("Creating record failed, no ID obtained.");
+				}
+			}
 
 			ps.close();
 			return  details;
@@ -156,12 +192,22 @@ public class AppDAO implements IAppDAO {
 
 		try {
 			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, issue.getId());
 			ps.setInt(2, issue.getUser_id());
 			ps.setString(3, issue.getIssue_name());
 
-			ps.executeUpdate();
+			int affectedRows = ps.executeUpdate();
+
+
+			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					issue.setId(generatedKeys.getInt(1));
+				}
+				else {
+					throw new SQLException("Creating record failed, no ID obtained.");
+				}
+			}
 			ps.close();
 			return issue;
 		} catch (SQLException e) {

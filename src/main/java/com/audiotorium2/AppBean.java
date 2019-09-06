@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import com.audiotorium2.core.*;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,18 +37,14 @@ public class AppBean {
 	public List<Range> myRanges;
 	public List<Product> myProducts;
 	public List<DataTableColumn> productColumns;
-	
-	public List<Item> myItems;
+
 	public String newIssueName;
-	public String[] colors;
-	public String[] brands;
 
 	public Map<String,List<Range>> criteriaMap;
 	
 	@PostConstruct
 	public void appBean() {
 
-		myItems = appController.getMyItems();
 		myCrts = new ArrayList<Criteria>();
 		myCrts.add(new Criteria("", 0,null));
 		myRanges = new ArrayList<Range>();
@@ -58,25 +55,7 @@ public class AppBean {
 		
 	}
 
-	public List<Item> getMyItems() {
-		return myItems;
-	}
 
-	public void setMyItems(List<Item> myItems) {
-		this.myItems = myItems;
-	}
-
-	public String[] getColors() {
-		return colors;
-	}
-
-	public String[] getBrands() {
-		return brands;
-	}
-
-	public void onDeleteRow() {
-		myItems.remove(myItems.size() - 1);
-	}
 
 	public String forwardStepOne() {
 		return "cd-step1.xhtml";
@@ -128,7 +107,7 @@ public class AppBean {
 	}
 
 	public String deleteRow(Item item) {
-		myItems.remove(item);
+//		myItems.remove(item);
 		return null;
 	}
 
@@ -261,11 +240,78 @@ public class AppBean {
 		return null;
 	}
 
-	public void saveIssueTest() {
+	private int findRangeId(String rangeName, List<EntityRange> list) {
+		for(int i=0;i<list.size();i++) {
+			if(rangeName.equals(list.get(i).getRange_name())){
+				return  list.get(i).getId();
+			}
+		}
+		return 0;
+	}
 
+	private int findCriteriaId(String criteriaName, List<EntityCriteria> list) {
+		for(int i=0;i<list.size();i++) {
+			if(criteriaName.equals(list.get(i).getName())){
+				return list.get(i).getId();
+			}
+		}
+		return 0;
+	}
 
+	public String saveIssueTest() {
+
+		// save issue
+		EntityIssue issue = appController.saveIssue(newIssueName);
+
+		// save criteria
+		List<EntityCriteria> listcrt = new ArrayList<>();
+		for(int i=0; i<myCrts.size(); i++ ) {
+			EntityCriteria criteria = appController.saveCriteria(issue.getId(), myCrts.get(i).getName(), Double.valueOf(String.valueOf(myCrts.get(i).getValue())));
+			listcrt.add(criteria);
+		}
+
+		// save range
+		List<EntityRange>listrange = new ArrayList<>();
+		for(int i =0;i<myRanges.size();i++) {
+			int criteria_id = findCriteriaId(myRanges.get(i).getCriteriaName(), listcrt);
+			EntityRange range  =appController.saveRange(criteria_id , myRanges.get(i).getRangeName(), myRanges.get(i).getWeight());
+			listrange.add(range);
+		}
+
+		// save product
+		List<EntityProduct> listprd=new ArrayList<>();
+		for(int i=0; i<myProducts.size();i++) {
+
+			EntityProduct product = appController.saveProduct(myProducts.get(i).getGrade(), myProducts.get(i).getName());
+			listprd.add(product);
+		}
+
+		// save product Details
+		for(int i=0;i<listprd.size();i++) {
+
+			for(Entry<String,String> detail : myProducts.get(i).getCriteriaRangeMap().entrySet()){
+				int crtid=findCriteriaId(detail.getKey(), listcrt);
+				int rid = findRangeId(detail.getValue(), listrange);
+				int pid = listprd.get(i).getId();
+				double grade = listprd.get(i).getGrade();
+				EntityProductDetails prdDetail = appController.saveProductDetails(crtid,rid,pid,grade);
+
+			}
+
+		}
+
+		myProducts.clear();
+		myCrts.clear();
+		myRanges.clear();
+		newIssueName="";
+		criteriaMap.clear();
+		productColumns.clear();
+
+		return  "successPage.xhtml";
 
 	}
+
+
 
 	public void saveDecisionAnalysis() {
 

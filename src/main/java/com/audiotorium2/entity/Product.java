@@ -1,13 +1,14 @@
 package com.audiotorium2.entity;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Product {
 
-	private String name;
-	private double price;
-	private Map<String, String> criteriaRangeMap;
-	private double grade;
+	private String name="";
+	private double price=0;
+	private Map<String, String> criteriaRangeMap=new HashMap<String, String>();
+	private double grade=0;
 	
 	
 	public Product(String name, double price, Map<String, String> criteriaRangeMap, double grade) {
