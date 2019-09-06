@@ -139,27 +139,27 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void insertLog(String operation, int userId) {
-		String sql = "INSERT INTO sys.log (userid, operation) values(?,?)";
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, userId);
-			ps.setString(2, operation);
-			ps.executeUpdate();
-			ps.close();
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
+//		String sql = "INSERT INTO sys.log (userid, operation) values(?,?)";
+//		Connection conn = null;
+//		try {
+//			conn = dataSource.getConnection();
+//			PreparedStatement ps = conn.prepareStatement(sql);
+//			ps.setInt(1, userId);
+//			ps.setString(2, operation);
+//			ps.executeUpdate();
+//			ps.close();
+//
+//		} catch (SQLException e) {
+//			throw new RuntimeException(e);
+//
+//		} finally {
+//			if (conn != null) {
+//				try {
+//					conn.close();
+//				} catch (SQLException e) {
+//				}
+//			}
+//		}
 
 	}
 

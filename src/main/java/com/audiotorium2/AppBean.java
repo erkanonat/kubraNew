@@ -260,10 +260,20 @@ public class AppBean {
 		}
 		return null;
 	}
+
+	public void saveIssueTest() {
+
+
+
+	}
+
 	public void saveDecisionAnalysis() {
+
 		appController.saveDecisionAnalysis(myProducts, myCrts, myRanges);
 		
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Issue saved", "Saved");
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Issue successfully saved", "Saved");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
+
+
 }
