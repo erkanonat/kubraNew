@@ -7,17 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd21e512-e78e-4788-8b4c-ec8315daa054" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/listMyCds.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/audiotorium2/AppBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/audiotorium2/AppBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/audiotorium2/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/audiotorium2/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/audiotorium2/core/EntityProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/audiotorium2/core/EntityProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/audiotorium2/dao/AppDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/audiotorium2/dao/AppDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/audiotorium2/entity/Criteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/audiotorium2/entity/Criteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/audiotorium2/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/audiotorium2/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/audiotorium2/entity/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/audiotorium2/entity/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cd-step1.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cd-step1.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cd-step4.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cd-step4.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/create_table_kubra.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/create_table_kubra.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/audiotorium2/controller/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="371">
+              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
               <folding>
                 <element signature="method#saveIssue#0;class#AppController#0" />
                 <element signature="e#659#931#0" />
@@ -79,6 +69,15 @@
                 <element signature="method#saveDecisionAnalysis#0;class#AppController#0" />
                 <element signature="method#saveAllIssue#0;class#AppController#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/resources/create_table_kubra.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -122,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/audiotorium2/dao/AppDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="67">
+              <caret line="118" column="43" lean-forward="true" selection-start-line="118" selection-start-column="43" selection-end-line="118" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -174,6 +173,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/listMyCds.xhtml" />
         <option value="$PROJECT_DIR$/src/main/java/com/audiotorium2/core/EntityProduct.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/audiotorium2/dao/AppDAO.java" />
+        <option value="$PROJECT_DIR$/src/resources/create_table_kubra.sql" />
       </list>
     </option>
   </component>
@@ -294,36 +294,6 @@
               <item name="kubraNew" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kubraNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="kubraNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="kubraNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kubraNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kubraNew" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sql" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -458,12 +428,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567752969704</updated>
-      <workItem from="1567752970961" duration="21585000" />
+      <workItem from="1567752970961" duration="22332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21585000" />
+    <option name="totallyTimeSpent" value="22332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="25" width="1863" height="1055" extended-state="6" />
@@ -490,7 +460,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.29157668" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.36069113" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.5075594" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.41036716" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -754,39 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/audiotorium2/AppBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/audiotorium2/controller/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding>
-            <element signature="method#saveIssue#0;class#AppController#0" />
-            <element signature="e#659#931#0" />
-            <element signature="e#952#993#0" />
-            <element signature="method#saveCriteria#0;class#AppController#0" />
-            <element signature="e#1087#1284#0" />
-            <element signature="e#1305#1346#0" />
-            <element signature="method#saveRange#0;class#AppController#0" />
-            <element signature="e#1446#1646#0" />
-            <element signature="e#1667#1708#0" />
-            <element signature="method#saveProduct#0;class#AppController#0" />
-            <element signature="e#1784#1937#0" />
-            <element signature="e#1958#1999#0" />
-            <element signature="method#saveProductDetails#0;class#AppController#0" />
-            <element signature="e#2102#2344#0" />
-            <element signature="e#2365#2406#0" />
-            <element signature="method#saveDecisionAnalysis#0;class#AppController#0" />
-            <element signature="method#saveAllIssue#0;class#AppController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/cd-step4.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -820,8 +757,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/audiotorium2/dao/AppDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="67">
+          <caret line="118" column="43" lean-forward="true" selection-start-line="118" selection-start-column="43" selection-end-line="118" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/audiotorium2/AppBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/audiotorium2/controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="method#saveIssue#0;class#AppController#0" />
+            <element signature="e#659#931#0" />
+            <element signature="e#952#993#0" />
+            <element signature="method#saveCriteria#0;class#AppController#0" />
+            <element signature="e#1087#1284#0" />
+            <element signature="e#1305#1346#0" />
+            <element signature="method#saveRange#0;class#AppController#0" />
+            <element signature="e#1446#1646#0" />
+            <element signature="e#1667#1708#0" />
+            <element signature="method#saveProduct#0;class#AppController#0" />
+            <element signature="e#1784#1937#0" />
+            <element signature="e#1958#1999#0" />
+            <element signature="method#saveProductDetails#0;class#AppController#0" />
+            <element signature="e#2102#2344#0" />
+            <element signature="e#2365#2406#0" />
+            <element signature="method#saveDecisionAnalysis#0;class#AppController#0" />
+            <element signature="method#saveAllIssue#0;class#AppController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/create_table_kubra.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
         </state>
       </provider>
     </entry>

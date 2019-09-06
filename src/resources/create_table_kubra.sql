@@ -17,6 +17,7 @@ CREATE TABLE sys.`product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ALTER TABLE sys.product  ADD COLUMN price double(10,2) DEFAULT 0
 ALTER TABLE sys.product  ADD COLUMN selected INT DEFAULT 0
+ALTER TABLE sys.product  ADD COLUMN issue_id INT DEFAULT 0
 
 
 CREATE TABLE sys.`range` (
@@ -64,3 +65,17 @@ truncate table sys.product;
 SELECT  * FROM sys.product_details;
 truncate table sys.product_details;
 
+
+
+# list my issues;
+select * from sys.Issue where user_id = $userid;
+
+# list supplier issues;
+select * from sys.Issue where status=1
+
+# list qualityAuthority issues;
+select * from sys.Issue where status=2
+
+
+# list productView
+select * from sys.Issue ss, sys.product pp where ss.status=0 and pp.issue_id=pp.id
