@@ -50,29 +50,14 @@
         </style>
 
         <h:form>
-
-            <h3 style="margin-top:1">Summary</h3>
-            <p:steps activeIndex="3" >
-                <p:menuitem value="Step-1" style="width:100%" />
-                <p:menuitem value="Step-2" style="width:100%" />
-                <p:menuitem value="Step-3" style="width:100%" />
-                <p:menuitem value="Step-4" style="width:100%" />
-            </p:steps>
-
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-
+            
             <div class="Wid100" style="margin-bottom:20px">
 
-
-
-                <p:inputText placeholder="Enter Issue Name" style="width:98%" disabled="true" value="#{appBean.newIssueName}" required="true"/>
+                <p:inputText  style="width:98%" disabled="true" value="#{app2Bean.issueName}" required="true"/>
             </div>
 
 
-            <p:dataTable value="#{appBean.myProducts}" var="product" widgetVar="productTable" editable="false" editMode="cell" >
+            <p:dataTable value="#{app2Bean.myProducts}" var="product" widgetVar="productTable" editable="true" editMode="cell" >
 
                 <f:facet name="header"> Products </f:facet>
 
@@ -83,35 +68,26 @@
                     </p:cellEditor>
                 </p:column>
 
-                <p:columns value="#{appBean.myCrts}" var="column" sortBy="#" disabled="true">
-                    <f:facet name="header">
-                        <h:outputText value="#{column.name}" />
-                    </f:facet>
 
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{product.criteriaRangeMap[column.name]}" /></f:facet>
-                        <f:facet name="input">
-                            <h:selectOneMenu value="#{product.criteriaRangeMap[column.name]}" style="width:100%">
-                                <f:selectItems value="#{appBean.criteriaMap[column.name]}" var="crt" itemLabel="#{crt.rangeName}" itemValue="#{crt.rangeName}" />
-                            </h:selectOneMenu>
-                        </f:facet>
+                <p:column headerText="Price" >
+                    <p:cellEditor disabled="false">
+                        <f:facet name="output"><h:outputText value="#{product.price}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{product.price}" style="width:96%" placeholder="Enter price" label="Price"/></f:facet>
                     </p:cellEditor>
+                </p:column>
 
-                </p:columns>
-
-                <p:column headerText="Grade" >
+                <p:column headerText="Currency" >
                     <p:cellEditor disabled="true">
-                        <f:facet name="output"><h:outputText value="#{product.grade}" /></f:facet>
-                        <f:facet name="input"><p:inputText value="#{product.grade}" style="width:96%" label="Grade"/></f:facet>
+                        <f:facet name="output"><h:outputText value="$" /></f:facet>
                     </p:cellEditor>
                 </p:column>
 
             </p:dataTable>
 
-
             <div>
-                <p:commandButton value="Back" action="#{appBean.forwardStepThree}"> </p:commandButton>
-                <p:commandButton value="Save" action="#{appBean.saveIssueTest()}"> </p:commandButton>
+                <p:commandButton value="Cancel" action="#{app2Bean.forwardShowIssues}"> </p:commandButton>
+                <p:commandButton value="Save" action="#{app2Bean.saveProductPrices}"> </p:commandButton>
+
             </div>
 
         </h:form>

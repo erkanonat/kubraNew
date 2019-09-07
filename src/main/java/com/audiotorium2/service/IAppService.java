@@ -20,4 +20,11 @@ public interface IAppService {
 	public EntityProduct saveProduct(EntityProduct product);
 	public EntityProductDetails saveProductDetails(EntityProductDetails details);
 
+	public void updateProduct(int productId, double grade , String name ,double price, int selected);
+
+	public List<EntityIssue> listUserIssues(int user_id);
+	public List<EntityIssue> listIssuesByStatus(int status);
+
+	public List<ProductView> listProducts(int issueid);
+	public List<CriteriaRangeView> listProductDetail(int productid);
 }

@@ -1,3 +1,6 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
+-- noinspection SqlDialectInspectionForFile
 
 CREATE TABLE sys.`product_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

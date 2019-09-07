@@ -54,6 +54,9 @@ public class SearchManagedBean {
 	private List<GenreWithMusic> genreList;
 	private GenreWithMusic selectedGenre;
 
+	public String listUserIssues() {
+		return "listUserIssues.xhtml";
+	}
 	
 	public String createIssue() throws Exception {
 		

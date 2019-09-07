@@ -23,6 +23,28 @@ public class AppController {
 	@Autowired
 	IAppService appService;
 
+	public List<ProductView> listProductsOfIssues( int issueId) {
+		List<ProductView> result = new ArrayList<ProductView>();
+
+		result = appService.listProducts(issueId);
+
+		if(result!=null && result.size()>0) {
+			for(int i=0;i<result.size();i++) {
+				List<CriteriaRangeView> details = appService.listProductDetail(result.get(i).getProduct_id());
+				result.get(i).setCriterias(details);
+			}
+		}
+
+		return result;
+	}
+
+	public List<EntityIssue> listMyIssues(int userid) {
+		return appService.listUserIssues(userid);
+	}
+
+	public List<EntityIssue> listIssuesByStatus(int status) {
+		return appService.listIssuesByStatus(status);
+	}
 
 	public EntityIssue saveIssue(String name ) {
 		try {
@@ -74,13 +96,26 @@ public class AppController {
 		}
 	}
 
-	public EntityProduct saveProduct(double grade , String name ) {
+	public EntityProduct saveProduct(double grade , String name ,double price, int selected, int issue_id) {
 		try {
 			EntityProduct product = new EntityProduct();
 			product.setGrade(grade);
 			product.setName(name);
-
+			product.setPrice(price);
+			product.setSelected(selected);
+			product.setIssue_id(issue_id);
 			return  appService.saveProduct(product);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public void updateProduct( int productId, double grade , String name ,double price, int selected) {
+		try {
+
+			  appService.updateProduct(productId, grade, name, price,selected);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -44,17 +44,33 @@ public class AppServiceImp implements IAppService {
 		return dao.saveProductDetails(details);
 	}
 
+	@Override
+	public void updateProduct(int productId, double grade, String name, double price, int selected) {
+			dao.updateProduct(productId, grade, name, price, selected);
+	}
+
+	@Override
+	public List<EntityIssue> listUserIssues(int user_id) {
+		return dao.listMyIssues(user_id);
+	}
+
+	@Override
+	public List<EntityIssue> listIssuesByStatus(int status) {
+		return dao.listIssuesByStatus(status);
+	}
+
+	@Override
+	public List<ProductView> listProducts(int issueid) {
+		return dao.listProductsView(issueid);
+	}
+
+	@Override
+	public List<CriteriaRangeView> listProductDetail(int productid) {
+		return dao.listProductDetail(productid);
+	}
+
 	public void saveDecisionAnalysis(List<Product> products, List<Criteria> crts, List<Range> ranges) {
-			
-//		for(int i=0;i<products.size();i++) {
-//			dao.saveProduct(products.get(i));
-//		}
-//		for(int j=0;j<crts.size();j++) {
-//			dao.saveCriteria(crts.get(j));
-//		}
-//		for(int k=0;k<ranges.size();k++) {
-//			dao.saveRange(ranges.get(k));
-//		}
+
 	}
 
 

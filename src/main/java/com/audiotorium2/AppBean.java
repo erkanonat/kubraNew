@@ -282,7 +282,7 @@ public class AppBean {
 		List<EntityProduct> listprd=new ArrayList<>();
 		for(int i=0; i<myProducts.size();i++) {
 
-			EntityProduct product = appController.saveProduct(myProducts.get(i).getGrade(), myProducts.get(i).getName());
+			EntityProduct product = appController.saveProduct(myProducts.get(i).getGrade(), myProducts.get(i).getName(),0,0, issue.getId() );
 			listprd.add(product);
 		}
 
@@ -305,7 +305,7 @@ public class AppBean {
 		myRanges.clear();
 		newIssueName="";
 		criteriaMap.clear();
-		productColumns.clear();
+//		productColumns.clear();
 
 		return  "successPage.xhtml";
 

@@ -26,6 +26,11 @@
 		<managed-bean-class>com.audiotorium2.AppBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	
-	
+
+	<managed-bean>
+		<managed-bean-name>app2Bean</managed-bean-name>
+		<managed-bean-class>com.audiotorium2.App2Bean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
 </faces-config>
