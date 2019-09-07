@@ -51,37 +51,48 @@
 
         <h:form>
 
-            <p:dataTable id="myIssues" widgetVar="myIssues" var="crt"
-                         value="#{app2Bean.myIssues}" editable="false"
-                         style="margin-bottom:20px">
+            <div class="Wid100" style="margin-bottom:20px">
+                <p:inputText label="Issue Name" readonly="true" style="width:98%" disabled="true" value="#{app2Bean.issueName}" required="true"/>
+            </div>
 
-                <f:facet name="header">
-                    Issues
+
+
+            <p:dataTable value="#{app2Bean.myProducts}" var="product" widgetVar="productTable"   selection="#{app2Bean.selectedProduct}" rowKey="#{product.product_id}" >
+
+                <f:facet name="header"> Select A Products </f:facet>
+
+                <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
+                <p:column headerText="Product Name" >
+                    <h:outputText value="#{product.name}" />
+                </p:column>
+
+                <p:columns value="#{product.criterias}" var="column" sortBy="#" disabled="true">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{column.criteriaName}" />
+                    </f:facet>
+                    <h:outputText value="#{column.rangeName}" />
+
+                </p:columns>
+
+                <p:column headerText="Product Grade" >
+                    <p:outputLabel value = "${product.grade}" />
+                </p:column>
+
+                <p:column headerText="Product Price" >
+                    <p:outputLabel value = "${product.price}   $" />
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Save" action="${app2Bean.saveProductsByAuthority}" > </p:commandButton>
                 </f:facet>
-                <p:column headerText="Issue Name">
-                    <h:outputText value="#{crt.issue_name}" />
-                </p:column>
-
-                <p:column headerText="Status">
-                    <p:selectOneMenu value="#{crt.status}" style="width:100%" disabled="true">
-
-                            <f:selectItem itemLabel="intial" itemValue="0" />
-                            <f:selectItem itemLabel="waiting offer" itemValue="1" />
-                            <f:selectItem itemLabel="waiting approval" itemValue="2" />
-                            <f:selectItem itemLabel="approved" itemValue="3" />
-
-                    </p:selectOneMenu>
-                </p:column>
-
-
-                <p:column style="width:32px">
-                    <p:commandButton icon="fa fa-play-circle"   process="@this" update="myIssues" action="#{app2Bean.openIssue(crt.id)}"  />
-                </p:column>
-
 
             </p:dataTable>
 
-
+            <div>
+                <p:commandButton value="Cancel" action="#{app2Bean.listByAuthorityCancel}"> </p:commandButton>
+            </div>
 
         </h:form>
     </ui:define>

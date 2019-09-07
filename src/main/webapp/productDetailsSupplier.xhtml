@@ -51,37 +51,44 @@
 
         <h:form>
 
-            <p:dataTable id="myIssues" widgetVar="myIssues" var="crt"
-                         value="#{app2Bean.myIssues}" editable="false"
-                         style="margin-bottom:20px">
+            <div class="Wid100" style="margin-bottom:20px">
 
-                <f:facet name="header">
-                    Issues
-                </f:facet>
-                <p:column headerText="Issue Name">
-                    <h:outputText value="#{crt.issue_name}" />
-                </p:column>
+                <p:inputText  style="width:98%" disabled="true" value="#{app2Bean.issueName}" required="true"/>
+            </div>
 
-                <p:column headerText="Status">
-                    <p:selectOneMenu value="#{crt.status}" style="width:100%" disabled="true">
 
-                            <f:selectItem itemLabel="intial" itemValue="0" />
-                            <f:selectItem itemLabel="waiting offer" itemValue="1" />
-                            <f:selectItem itemLabel="waiting approval" itemValue="2" />
-                            <f:selectItem itemLabel="approved" itemValue="3" />
+            <p:dataTable value="#{app2Bean.myProducts}" var="product" widgetVar="productTable" editable="true" editMode="cell" >
 
-                    </p:selectOneMenu>
+                <f:facet name="header"> Products </f:facet>
+
+                <p:column headerText="Product Name" >
+                    <p:cellEditor disabled="true">
+                        <f:facet name="output"><h:outputText value="#{product.name}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{product.name}" style="width:96%" label="Name"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
 
 
-                <p:column style="width:32px">
-                    <p:commandButton icon="fa fa-play-circle"   process="@this" update="myIssues" action="#{app2Bean.openIssue(crt.id)}"  />
+                <p:column headerText="Price" >
+                    <p:cellEditor disabled="false">
+                        <f:facet name="output"><h:outputText value="#{product.price}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{product.price}" style="width:96%" placeholder="Enter price" label="Price"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
 
+                <p:column headerText="Currency" >
+                    <p:cellEditor disabled="true">
+                        <f:facet name="output"><h:outputText value="$" /></f:facet>
+                    </p:cellEditor>
+                </p:column>
 
             </p:dataTable>
 
+            <div>
+                <p:commandButton value="Cancel" action="#{app2Bean.forwardShowIssues}"> </p:commandButton>
+                <p:commandButton value="Save" action="#{app2Bean.saveProductPrices}"> </p:commandButton>
 
+            </div>
 
         </h:form>
     </ui:define>

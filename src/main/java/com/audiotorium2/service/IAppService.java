@@ -21,7 +21,7 @@ public interface IAppService {
 	public EntityProductDetails saveProductDetails(EntityProductDetails details);
 
 	public void updateProduct(int productId, double grade , String name ,double price, int selected);
-
+	public void updateIssue(int issue_id, int status);
 	public List<EntityIssue> listUserIssues(int user_id);
 	public List<EntityIssue> listIssuesByStatus(int status);
 

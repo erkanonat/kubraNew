@@ -15,8 +15,8 @@
             
             
              
-            <p:menuitem value="Create Decision Issue" icon="fa fa-asterisk" action="#{searchManagedBean.createIssue}"  />
-            <p:menuitem value="List Issues" icon="fa fa-list" action="#{app2Bean.listUserIssues}"  />
+            <p:menuitem value="Create Decision Issue" icon="fa fa-asterisk" action="#{searchManagedBean.createIssue}" rendered="${buttonManagedBean.isTeamMember()}" />
+            <p:menuitem value="List Issues" icon="fa fa-list" action="#{app2Bean.listUserIssues}"  rendered="${!buttonManagedBean.isTeamMember()}" />
             <p:menuitem value="Logout" icon="fa fa-sign-out" action="#{buttonManagedBean.logout}"  />
             
             

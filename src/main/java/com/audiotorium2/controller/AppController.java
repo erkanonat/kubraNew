@@ -55,6 +55,7 @@ public class AppController {
 
 			issue.setIssue_name(name);
 			issue.setUser_id(Integer.valueOf(userId));
+			issue.setStatus(1);
 
 			return appService.saveIssue(issue);
 
@@ -105,6 +106,17 @@ public class AppController {
 			product.setSelected(selected);
 			product.setIssue_id(issue_id);
 			return  appService.saveProduct(product);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public void updateIssue( int issueid , int status) {
+		try {
+
+			appService.updateIssue(issueid,status);
 
 		} catch (Exception e) {
 			e.printStackTrace();

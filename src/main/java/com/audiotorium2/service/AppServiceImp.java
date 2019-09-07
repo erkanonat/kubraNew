@@ -73,5 +73,9 @@ public class AppServiceImp implements IAppService {
 
 	}
 
+	@Override
+	public void updateIssue(int issue_id, int status) {
+		dao.updateIssue(issue_id,status);
+	}
 
 }

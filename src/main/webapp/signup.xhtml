@@ -25,13 +25,20 @@
                 <div class="Card ShadowEffect">
                 <h:form id ="x">
                     <div class="EmptyBox20"></div>
-                    <div class="Wid100 OvHidden BigTopic Fs30"><i class="icon-users Fs40"></i>Audiotorium Create Account</div>
+                    <div class="Wid100 OvHidden BigTopic Fs30"><i class="icon-users Fs40"></i>Decision Analysis Project Create Account</div>
                     <div class="EmptyBox20"></div>
                     <div class="Wid100"><p:inputText placeholder="Email" styleClass="Wid80 TexAlCenter Fs18" required="true" value="#{buttonManagedBean.email}" /></div>
                     <div class="EmptyBox10"></div>
                     <div class="Wid100"><p:inputText placeholder="Username" styleClass="Wid80 TexAlCenter Fs18" value="#{buttonManagedBean.username}" required="true"/></div>
                    <div class="EmptyBox10"></div>
                     <div class="Wid100"><p:inputText type="password" placeholder="Password" styleClass="Wid80 TexAlCenter Fs18" value="#{buttonManagedBean.password}" required="true"/></div>
+                    <div class="EmptyBox10"></div>
+                    <div class="Wid100"></div>
+                    <p:selectOneMenu id="role_som" value="#{buttonManagedBean.signup_role}" styleClass="Wid80 TexAlCenter Fs18" required="true">
+                        <f:selectItem itemLabel="Team Member" itemValue="1" />
+                        <f:selectItem itemLabel="Supplier" itemValue="2" />
+                        <f:selectItem itemLabel="Decision Authority" itemValue="3" />
+                    </p:selectOneMenu>
                     <div class="EmptyBox10"></div>
                     <div class="Wid100"><p:inputText  placeholder="Name" styleClass="Wid80 TexAlCenter Fs18" required="true" value="#{buttonManagedBean.name}" /></div>
                     <div class="EmptyBox10"></div>

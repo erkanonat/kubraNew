@@ -59,4 +59,16 @@ public class EntityIssue {
     public void setIssue_name(String issue_name) {
         this.issue_name = issue_name;
     }
+
+    public String getStatusText() {
+        if(status==0){
+            return "initial";
+        }else if(status==1) {
+            return "waiting offer";
+        } else if (status==2) {
+            return "waiting approval ";
+        } else {
+            return "approved";
+        }
+    }
 }

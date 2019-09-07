@@ -93,7 +93,7 @@ public class AppBean {
 	}
 
 	public void onAddNewCriteria() {
-		myCrts.add(new Criteria("", 0,null));
+		myCrts.add(new Criteria("", 0,new ArrayList<Range>()));
 		FacesMessage msg = new FacesMessage("New Criteria added", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
@@ -310,7 +310,6 @@ public class AppBean {
 		return  "successPage.xhtml";
 
 	}
-
 
 
 	public void saveDecisionAnalysis() {

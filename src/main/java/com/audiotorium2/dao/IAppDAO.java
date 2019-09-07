@@ -16,7 +16,7 @@ public interface IAppDAO {
 	public EntityProductDetails saveProductDetails(EntityProductDetails details);
 
 	public void updateProduct( int productId, double grade , String name ,double price, int selected);
-
+	public void updateIssue(int issue_id, int status);
 	public List<EntityIssue> listIssuesByStatus(int status);
 	public List<EntityIssue> listMyIssues(int userid);
 

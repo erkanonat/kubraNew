@@ -37,11 +37,33 @@ public class App2Bean {
     @Getter
     public int selectedIssueId;
 
+    public ProductView selectedProduct;
+
+    public String saveProductsByAuthority() {
+
+        appController.updateProduct(selectedProduct.getProduct_id(), selectedProduct.getGrade(), selectedProduct.getName(),
+                selectedProduct.getPrice(),1);
+
+        appController.updateIssue(selectedIssueId, 3);
+        return "successPage.xhtml";
+    }
+
+    public String listByAuthorityCancel() {
+        return  listUserIssues();
+    }
+
     public String listUserIssues() {
         HttpSession session = SessionUtils.getSession();
         int userId = (Integer) session.getAttribute("id");
-
-        myIssues = appController.listMyIssues(userId);
+        int role = (Integer) session.getAttribute("role");
+        int status=0;
+        if(role == 1) {
+            myIssues = appController.listIssuesByStatus(0);
+        }else if(role == 2) {
+            myIssues = appController.listIssuesByStatus(1);
+        }else  {
+            myIssues = appController.listIssuesByStatus(2);
+        }
 
         return "listUserIssues.xhtml";
     }
@@ -69,13 +91,23 @@ public class App2Bean {
     }
 
     public String openIssue(int issue_id) {
+        selectedIssueId = issue_id;
           for(int i=0;i<myIssues.size();i++) {
               if(myIssues.get(i).getId()==issue_id){
                   issueName = myIssues.get(i).getIssue_name();
               }
           }
           myProducts =  appController.listProductsOfIssues(issue_id);
-          return "productDetails.xhtml";
+          HttpSession session = SessionUtils.getSession();
+          int role = (Integer) session.getAttribute("role");
+          if(role ==1) {
+              return "productDetails.xhtml";
+          }else if(role==2) {
+              return "productDetailsSupplier.xhtml";
+          } else {
+              return "productDetailsAuthority.xhtml";
+          }
+
     }
 
     public AppController getAppController() {
@@ -128,6 +160,23 @@ public class App2Bean {
             appController.updateProduct(myProducts.get(i).getProduct_id(), myProducts.get(i).getGrade(), myProducts.get(i).getName(),
                     myProducts.get(i).getPrice(), myProducts.get(i).getSelected());
         }
+
+
+        appController.updateIssue(selectedIssueId, 2);
+
+        myProducts.clear();
+        selectedIssueId=0;
+        issueName="";
+        myIssues.clear();
+
         return "successPage.xhtml";
+    }
+
+    public ProductView getSelectedProduct() {
+        return selectedProduct;
+    }
+
+    public void setSelectedProduct(ProductView selectedProduct) {
+        this.selectedProduct = selectedProduct;
     }
 }

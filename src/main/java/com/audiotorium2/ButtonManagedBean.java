@@ -44,11 +44,13 @@ public class ButtonManagedBean {
 	private String message;
 	private List<String> covers;
 
-
 	//erkan
+
 	@Getter
 	@Setter
-	private String role;
+	private int role;
+
+	private int signup_role;
 	
 	public String login() {
 		// Do any action that you would.
@@ -69,6 +71,8 @@ public class ButtonManagedBean {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("id", user.getId());
 			session.setAttribute("displayname", user.getName());
+			session.setAttribute("role",user.getUserType());
+			role = user.getUserType();
 			name = user.getName();
 			covers = new ArrayList<String>();
 			
@@ -78,6 +82,16 @@ public class ButtonManagedBean {
 		RequestContext.getCurrentInstance()
 				.showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User not found"));
 		return "login.xhtml";
+	}
+
+	public boolean isTeamMember() {
+		return this.role==1;
+	}
+	public boolean isSupplier() {
+		return this.role==2;
+	}
+	public boolean isAuthority() {
+		return this.role==3;
 	}
 
 	public String signUp() {
@@ -90,6 +104,7 @@ public class ButtonManagedBean {
 		user.setSurname(surname);
 		user.setName(name);
 		user.setGender(gender);
+		user.setUserType(signup_role);
 
 		if (!accept) {
 			RequestContext.getCurrentInstance().showMessageInDialog(
@@ -127,13 +142,15 @@ public class ButtonManagedBean {
 		gender = null;
 		accept = false;
 		phoneNumber = null;
-
+		role = 0;
 	}
 
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.setAttribute("id", null);
 		session.setAttribute("displayname", null);
+		session.setAttribute("role", null);
+
 		clearall();
 		return "login.xhtml";
 	}
@@ -228,5 +245,21 @@ public class ButtonManagedBean {
 
 	public void setCovers(List<String> covers) {
 		this.covers = covers;
+	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
+
+	public int getSignup_role() {
+		return signup_role;
+	}
+
+	public void setSignup_role(int signup_role) {
+		this.signup_role = signup_role;
 	}
 }

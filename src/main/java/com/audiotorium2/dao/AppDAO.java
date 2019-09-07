@@ -105,7 +105,7 @@ public class AppDAO implements IAppDAO {
 	@Override
 	public EntityProduct saveProduct(EntityProduct product) {
 		String sql = "INSERT INTO sys.product "
-				+ "(id, name, issue_id, grade, price, issue_id  ) VALUES (?,?,?,?,?,?)";
+				+ "(id, name, issue_id, grade, price  ) VALUES (?,?,?,?,?)";
 		Connection conn = null;
 
 		try {
@@ -116,7 +116,6 @@ public class AppDAO implements IAppDAO {
 			ps.setInt(3, product.getIssue_id());
 			ps.setDouble(4, product.getGrade());
 			ps.setDouble(5,product.getPrice());
-			ps.setInt(6,product.getIssue_id());
 
 			ps.executeUpdate();
 
@@ -188,6 +187,38 @@ public class AppDAO implements IAppDAO {
 	}
 
 	@Override
+	public void updateIssue(int issue_id, int status) {
+
+
+		String sql = "UPDATE sys.Issue "
+				+ " SET status=?  WHERE id=? ";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, status);
+			ps.setInt(2, issue_id);
+
+			ps.executeUpdate();
+
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+
+	}
+
+
+	@Override
 	public void updateProduct(int productId, double grade, String name, double price, int selected) {
 
 
@@ -223,8 +254,8 @@ public class AppDAO implements IAppDAO {
 	@Override
 	public List<EntityIssue> listIssuesByStatus(int status) {
 		String sql = "select m.* " +
-				"from sys.Issue m" +
-				"where m.status = ? " ;
+				" from sys.Issue m " +
+				" where m.status = ? " ;
 
 		Connection conn = null;
 		List<EntityIssue> swList = new ArrayList<EntityIssue>();
@@ -378,7 +409,7 @@ public class AppDAO implements IAppDAO {
 	public EntityIssue saveIssue(EntityIssue issue) {
 
 		String sql = "INSERT INTO sys.Issue "
-				+ "(id, user_id, issue_name) VALUES (?,?,?)";
+				+ "(id, user_id, issue_name, status) VALUES (?,?,?,?)";
 		Connection conn = null;
 
 		try {
@@ -387,6 +418,7 @@ public class AppDAO implements IAppDAO {
 			ps.setInt(1, issue.getId());
 			ps.setInt(2, issue.getUser_id());
 			ps.setString(3, issue.getIssue_name());
+			ps.setInt(4,issue.getStatus());
 
 			int affectedRows = ps.executeUpdate();
 

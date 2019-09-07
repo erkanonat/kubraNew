@@ -7,7 +7,11 @@ public class Range {
 	private double weight=0;
 	
 	
-	
+	public Range () {
+		criteriaName="";
+		rangeName="";
+		weight=0;
+	}
 	
 	
 	public Range(String criteriaName, String rangeName, double weight) {
