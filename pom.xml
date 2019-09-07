@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com</groupId>
-	<artifactId>audiotorium2</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>decisiontool</artifactId>
+	<version>0.0.1</version>
 	<packaging>war</packaging>
 
-	<name>audiotorium2</name>
+	<name>decisiontool</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -42,7 +42,7 @@
 			<artifactId>rio-theme</artifactId>
 			<version>2.0.1</version> 
 			<scope>system</scope>
-			<systemPath>/home/erkan/workspace/kubraNew/src/resources/rio-theme-2.0.1.jar</systemPath>
+			<systemPath>/home/kubra/workspace/kubraNew/src/resources/rio-theme-2.0.1.jar</systemPath>
 		<!--
 		<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>

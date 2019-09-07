@@ -24,5 +24,9 @@ url ine giderek (local sunucu için) login ekranının geldiği görülebilir. .
 sign-up ile user oluşturup, login olduktan sonra uygulama kullanılabilir.
 
 
+not : primeface-rio theme nin düzgün çalışması için  , pom.xml deki path çalıştırılan bilgisayara göre düzgün set edilmeli path'i.
+<systemPath>/home/kubra/workspace/kubraNew/src/resources/rio-theme-2.0.1.jar</systemPath>
+gibi.
+
 
 
